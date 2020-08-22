@@ -1,7 +1,10 @@
+
+
 plugins {
 	id 'org.springframework.boot' version '2.3.3.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
+	id 'idea'
 }
 
 group = 'com.example'
@@ -10,9 +13,9 @@ sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
-	maven {
-		url "https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind"
-	}
+//	maven {
+//		url "https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind"
+//	}
 }
 
 dependencies {
@@ -20,14 +23,22 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-
-//	compile("com.fasterxml.jackson.core:jackson-databind:2.3.1")
-
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.3.1'
-//	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.3.1'
-
+	//THAT'S RIGHT
+	compile("org.springframework.boot:spring-boot-starter-web") {
+		exclude group: 'com.fasterxml.jackson.core'
+	}
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.2'
+	compile "org.springframework.boot:spring-boot-starter-web"
+	compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+	compile "org.springframework.boot:spring-boot-starter-data-jpa"
+	compile "com.h2database:h2"
 }
 
 test {
 	useJUnitPlatform()
 }
+//
+//jar {
+//	baseName = 'gs-gradle'
+//	version =  '0.1.0'
+//}
