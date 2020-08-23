@@ -7,24 +7,21 @@ plugins {
 	id 'idea'
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+//group = 'com.example'
+//version = '0.0.1-SNAPSHOT'
+//sourceCompatibility = '11'
 
 configurations {
 	compile.exclude module: "spring-boot-starter-tomcat"
 }
 
-
 repositories {
 	mavenCentral()
-//	maven {
-//		url "https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind"
-//	}
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'junit:junit:4.12'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
