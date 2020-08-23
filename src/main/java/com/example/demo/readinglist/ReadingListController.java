@@ -2,6 +2,7 @@ package com.example.demo.readinglist;
 
 import com.example.demo.readinglist.ReadingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
+@Conditional(JdbcTemplateCondition.class)
 @Controller
 @RequestMapping("/books")
 public class ReadingListController {
