@@ -1,0 +1,42 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+    <logger name="root" level="INFO"/>
+    (continued)
+    For Maven builds, you can exclude Logback by excluding the default logging starter
+    transitively resolved by the root starter dependency:
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <exclusions>
+            <exclusion>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-logging</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    In Gradle, it’s easiest to place the exclusion under the configurations section:
+    configurations {
+    all*.exclude group:'org.springframework.boot',
+    module:'spring-boot-starter-logging'
+    }
+    With the default logging starter excluded, you can now include the starter for the logging implementation you’d rather use. With a Maven build you can add Log4j like this:
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-log4j</artifactId>
+    </dependency>
+    In a Gradle build you can add Log4j like this:
+    compile("org.springframework.boot:spring-boot-starter-log4j")
+    If you’d rather use Log4j2, change the artifact from “spring-boot-starter-log4j” to
+    “spring-boot-starter-log4j2”.
+    Licensed to Thomas Snead <n.ordickan@gmail.com> www.it-ebooks.info
+    62 CHAPTER 3 Customizing configuration
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
